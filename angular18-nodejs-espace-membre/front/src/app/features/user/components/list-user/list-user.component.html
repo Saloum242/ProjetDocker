@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Liste des utilisateurs</h2>
+    <div *ngIf="!error">
+        <div class="user-list">
+            <div *ngFor="let user of users" class="user-card" (click)="openModal(user)">
+                <img [src]="user.pokemonImage" alt="Pokemon" class="pokemon-image">
+                <div class="user-info">
+                    <span>{{ user.firstname }}</span>
+                    <span>{{ user.lastname }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="pokemonModal" class="modal" [class.show]="isModalOpen">
+        <div class="modal-content">
+            <span class="close" (click)="closeModal()">&times;</span>
+            <h2>{{ selectedUser?.firstname }} {{ selectedUser?.lastname }}</h2>
+            <img [src]="selectedUser?.pokemonImage" alt="Pokemon" class="modal-pokemon-image">
+            <p>{{ selectedUser?.pokemonDescription }}</p>
+        </div>
+    </div>
+</div>

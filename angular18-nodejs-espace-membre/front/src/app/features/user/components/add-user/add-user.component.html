@@ -1,0 +1,32 @@
+<div class="container">
+
+    <h3>Créer un utilisateur</h3>
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <div>
+            <label for="firstName">First Name</label>
+            <input id="firstName" formControlName="firstName" maxlength="18">
+          </div>
+          <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched" class="error">
+            Obligatoire <br> 18 caractères max
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <label for="lastName">Last Name</label>
+            <input id="lastName" formControlName="lastName" maxlength="18">
+          </div>
+          <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched" class="error">
+            Obligatoire <br> 18 caractères max
+          </div>
+        </div>
+        <button type="submit" [disabled]="userForm.invalid">Submit</button>
+      </form>
+      
+
+</div>
+
+<div *ngIf="message" [ngClass]="{'message-success': isSuccess, 'message-error': !isSuccess}" class="message">
+  {{ message }}
+</div>
